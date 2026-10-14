@@ -30,7 +30,7 @@ pipeline {
       stage('Verify Backend') {
     steps {
         sh '''
-            for i in {1..12}; do
+            for i in $(seq 1 12); do
                 if curl -f http://localhost:5000/; then
                     echo "Backend is ready."
                     exit 0
