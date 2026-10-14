@@ -27,11 +27,24 @@ pipeline {
             }
         }
 
-        stage('Verify Backend') {
-            steps {
-                sh 'curl -f http://localhost:5000/'
-            }
-        }
+      stage('Verify Backend') {
+    steps {
+        sh '''
+            for i in {1..12}; do
+                if curl -f http://localhost:5000/; then
+                    echo "Backend is ready."
+                    exit 0
+                fi
+
+                echo "Backend is not ready yet. Waiting 5 seconds..."
+                sleep 5
+            done
+
+            echo "Backend did not become ready."
+            exit 1
+        '''
+    }
+}
 
         stage('Verify Frontend') {
             steps {
