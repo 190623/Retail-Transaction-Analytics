@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const basketTableBody = document.querySelector('#basket-table tbody');
     const runBasketBtn = document.getElementById('run-basket-btn');
 
-    let API_URL = 'http://localhost:5000';
+    let API_URL = `http://${window.location.hostname}:5000`;
     let salesChartInst = null;
     let topProductsChartInst = null;
     let countryChartInst = null;
